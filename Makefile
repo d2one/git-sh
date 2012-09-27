@@ -36,6 +36,7 @@ run: all
 install: $(PROGRAM)
 	install -d "$(execdir)"
 	install -m 0755 $(PROGRAM) "$(execdir)/$(PROGRAM)"
+	git config --global alias.sh "!$(execdir)/$(PROGRAM)"
 	install -m 0755 git-edit.bash "$(LIBDIR)/git-edit"
 	git config --global alias.edit "!$(LIBDIR)/git-edit"
 	install -m 0755 git-forest.pl "$(LIBDIR)/git-forest"
