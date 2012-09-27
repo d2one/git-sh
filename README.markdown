@@ -32,7 +32,7 @@ Install the most recent available version under `/usr/local`:
 Start a shell with `git-sh`:
 
     $ git-sh
-    master!git-sh> help
+    master!git-sh> help sh
 
 Use the `PREFIX` environment variable to specify a different install location.
 For example, under `~/bin`:
@@ -46,7 +46,7 @@ Typical usage is to change into a git working copy and then start the shell:
 
     $ cd mygreatrepo
     $ git sh
-    master!mygreatrepo> help
+    master!mygreatrepo> help sh
 
 Core git commands and git command aliases defined in `~/.gitconfig` can be
 used as top-level commands:
@@ -62,7 +62,8 @@ aliases defined in `~/.bashrc` are also available:
     new!mygreatrepo> vim somefile
 
 *IMPORTANT: `rm`, `mv`, and `diff` are aliased to their git counterparts.  To use system versions,
-run `command(1)` (e.g., `command rm`) or qualify the command (e.g. `/bin/rm`).*
+run `command(1)` (e.g., `command rm`) or qualify the command (e.g. `/bin/rm`) or 
+prefix command with backslash (e.g. `\rm`).*
 
 Prompt
 ------
