@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='content-type' value='text/html;charset=utf8'>
+  <meta name='generator' value='Ronn/v0.7.3 (http://github.com/rtomayko/ronn/tree/0.7.3)'>
+  <title>git-sh(1) - a git shell</title>
+  <style type='text/css' media='all'>
+  /* style: man */
+  body#manpage {margin:0}
+  .mp {max-width:100ex;padding:0 9ex 1ex 4ex}
+  .mp p,.mp pre,.mp ul,.mp ol,.mp dl {margin:0 0 20px 0}
+  .mp h2 {margin:10px 0 0 0}
+  .mp > p,.mp > pre,.mp > ul,.mp > ol,.mp > dl {margin-left:8ex}
+  .mp h3 {margin:0 0 0 4ex}
+  .mp dt {margin:0;clear:left}
+  .mp dt.flush {float:left;width:8ex}
+  .mp dd {margin:0 0 0 9ex}
+  .mp h1,.mp h2,.mp h3,.mp h4 {clear:left}
+  .mp pre {margin-bottom:20px}
+  .mp pre+h2,.mp pre+h3 {margin-top:22px}
+  .mp h2+pre,.mp h3+pre {margin-top:5px}
+  .mp img {display:block;margin:auto}
+  .mp h1.man-title {display:none}
+  .mp,.mp code,.mp pre,.mp tt,.mp kbd,.mp samp,.mp h3,.mp h4 {font-family:monospace;font-size:14px;line-height:1.42857142857143}
+  .mp h2 {font-size:16px;line-height:1.25}
+  .mp h1 {font-size:20px;line-height:2}
+  .mp {text-align:justify;background:#fff}
+  .mp,.mp code,.mp pre,.mp pre code,.mp tt,.mp kbd,.mp samp {color:#131211}
+  .mp h1,.mp h2,.mp h3,.mp h4 {color:#030201}
+  .mp u {text-decoration:underline}
+  .mp code,.mp strong,.mp b {font-weight:bold;color:#131211}
+  .mp em,.mp var {font-style:italic;color:#232221;text-decoration:none}
+  .mp a,.mp a:link,.mp a:hover,.mp a code,.mp a pre,.mp a tt,.mp a kbd,.mp a samp {color:#0000ff}
+  .mp b.man-ref {font-weight:normal;color:#434241}
+  .mp pre {padding:0 4ex}
+  .mp pre code {font-weight:normal;color:#434241}
+  .mp h2+pre,h3+pre {padding-left:0}
+  ol.man-decor,ol.man-decor li {margin:3px 0 10px 0;padding:0;float:left;width:33%;list-style-type:none;text-transform:uppercase;color:#999;letter-spacing:1px}
+  ol.man-decor {width:100%}
+  ol.man-decor li.tl {text-align:left}
+  ol.man-decor li.tc {text-align:center;letter-spacing:4px}
+  ol.man-decor li.tr {text-align:right;float:right}
+  </style>
+</head>
+<!--
+  The following styles are deprecated and will be removed at some point:
+  div#man, div#man ol.man, div#man ol.head, div#man ol.man.
+
+  The .man-page, .man-decor, .man-head, .man-foot, .man-title, and
+  .man-navigation should be used instead.
+-->
+<body id='manpage'>
+  <div class='mp' id='man'>
+
+  <div class='man-navigation' style='display:none'>
+    <a href="#NAME">NAME</a>
+    <a href="#SYNOPSIS">SYNOPSIS</a>
+    <a href="#DESCRIPTION">DESCRIPTION</a>
+    <a href="#BUILTIN-ALIASES">BUILTIN ALIASES</a>
+    <a href="#CUSTOM-ALIASES">CUSTOM ALIASES</a>
+    <a href="#COMPLETION">COMPLETION</a>
+    <a href="#CUSTOMIZING">CUSTOMIZING</a>
+    <a href="#ENVIRONMENT">ENVIRONMENT</a>
+    <a href="#SEE-ALSO">SEE ALSO</a>
+  </div>
+
+  <ol class='man-decor man-head man head'>
+    <li class='tl'>git-sh(1)</li>
+    <li class='tc'></li>
+    <li class='tr'>git-sh(1)</li>
+  </ol>
+
+  <h2 id="NAME">NAME</h2>
+<p class="man-name">
+  <code>git-sh</code> - <span class="man-whatis">a git shell</span>
+</p>
+
+<h2 id="SYNOPSIS">SYNOPSIS</h2>
+
+<p><code>git-sh</code></p>
+
+<h2 id="DESCRIPTION">DESCRIPTION</h2>
+
+<p><code>git-sh</code> starts an interactive <code>bash(1)</code> session modified for git-heavy
+workflows. Typical usage is to change into the directory of a git work tree or
+bare repository and run the <code>git-sh</code> command to start an interactive shell
+session.</p>
+
+<p>Top-level command aliases are created for all core <code>git(1)</code> subcommands, git-sh
+builtin aliases (see <em>BUILTIN ALIASES</em>), and git command aliases defined in
+<code>~/.gitconfig</code>.</p>
+
+<h2 id="BUILTIN-ALIASES">BUILTIN ALIASES</h2>
+
+<p><strong>git-sh</strong> loads a set of standard aliases in addition to all core git commands.
+The builtin aliases are overridden by aliases defined in the user or system
+gitconfig files.</p>
+
+<dl>
+<dt class="flush"><code>b</code></dt><dd>git branch</dd>
+<dt class="flush"><code>c</code></dt><dd>git checkout</dd>
+<dt class="flush"><code>l</code></dt><dd>git log --pretty=oneline --abbrev-commit</dd>
+<dt class="flush"><code>po</code></dt><dd>git push origin</dd>
+</dl>
+
+
+<h3 id="The-Staging-Area">The Staging Area</h3>
+
+<dl>
+<dt class="flush"><code>a</code></dt><dd>git add</dd>
+<dt class="flush"><code>aa</code></dt><dd>git add --update (mnemonic: "add all")</dd>
+<dt class="flush"><code>stage</code></dt><dd>git add</dd>
+<dt class="flush"><code>ap</code></dt><dd>git add --patch</dd>
+<dt class="flush"><code>p</code></dt><dd>git diff --cached (mnemonic: "patch")</dd>
+<dt class="flush"><code>ps</code></dt><dd>git diff --cached --stat (mnemonic: "patch stat")</dd>
+<dt class="flush"><code>unstage</code></dt><dd>git reset HEAD</dd>
+</dl>
+
+
+<h3 id="Commits-and-Commit-History">Commits and Commit History</h3>
+
+<dl>
+<dt class="flush"><code>ci</code></dt><dd>git commit --verbose</dd>
+<dt class="flush"><code>ca</code></dt><dd>git commit --verbose --all</dd>
+<dt class="flush"><code>amend</code></dt><dd>git commit --verbose --amend</dd>
+<dt class="flush"><code>n</code></dt><dd>git commit --verbose --amend</dd>
+<dt class="flush"><code>s</code></dt><dd>git commit --dry-run --short</dd>
+<dt class="flush"><code>k</code></dt><dd>git cherry-pick</dd>
+<dt class="flush"><code>re</code></dt><dd>git rebase --interactive</dd>
+<dt class="flush"><code>rc</code></dt><dd>git rebase --continue</dd>
+<dt class="flush"><code>ra</code></dt><dd>git rebase --abort</dd>
+<dt class="flush"><code>rs</code></dt><dd>git rebase --skip</dd>
+<dt class="flush"><code>pop</code></dt><dd>git reset --soft HEAD^</dd>
+<dt class="flush"><code>peek</code></dt><dd>git log -p --max-count=1</dd>
+<dt class="flush"><code>e</code></dt><dd>git edit</dd>
+<dt class="flush"><code>fr</code></dt><dd>git forest --all --sha</dd>
+</dl>
+
+
+<h3 id="Fetching-and-Pulling">Fetching and Pulling</h3>
+
+<dl>
+<dt class="flush"><code>f</code></dt><dd>git fetch</dd>
+<dt class="flush"><code>pm</code></dt><dd>git pull (mnemonic: "pull merge")</dd>
+<dt class="flush"><code>pr</code></dt><dd>git pull --rebase (mnemonic: "pull rebase")</dd>
+</dl>
+
+
+<h3 id="Miscellaneous-Commands">Miscellaneous Commands</h3>
+
+<dl>
+<dt class="flush"><code>d</code></dt><dd>git diff</dd>
+<dt class="flush"><code>ds</code></dt><dd>git diff --stat (mnemonic: "diff stat")</dd>
+<dt class="flush"><code>t</code></dt><dd>git diff --cached</dd>
+<dt class="flush"><code>hard</code></dt><dd>git reset --hard</dd>
+<dt class="flush"><code>soft</code></dt><dd>git reset --soft</dd>
+<dt class="flush"><code>scrap</code></dt><dd>git checkout HEAD</dd>
+</dl>
+
+
+<h2 id="CUSTOM-ALIASES">CUSTOM ALIASES</h2>
+
+<p>Anything defined in the <code>[alias]</code> section of the repository, user, or system git
+config files are also available as top-level shell commands. Assuming a
+<code>~/.gitconfig</code> that looked like this:</p>
+
+<pre><code>[alias]
+  ci = commit --verbose
+  ca = commit -a
+  d  = diff
+  s  = status
+  thanks = !git-thanks
+</code></pre>
+
+<p>... you might then have the following shell session:</p>
+
+<pre><code>master!something&gt; echo "stuff" &gt;somefile
+master!something*&gt; s
+M  somefile
+master!something*&gt; d
+diff --git a/somefile b/somefile
+-- a/somefile
+++ b/somefile
+@@ -0,0 +1 @@
++ stuff
+master!something*&gt; ca -m "add stuff"
+master!something&gt; thanks HEAD
+</code></pre>
+
+<h3 id="PROMPT">PROMPT</h3>
+
+<p>The default prompt shows the current branch, a bang (<code>!</code>), and then the relative
+path to the current working directory from the root of the work tree.  If the
+work tree includes modified files that have not yet been staged, a dirty status
+indicator (<code>*</code>) is also displayed.</p>
+
+<p>The git-sh prompt includes ANSI colors when the git <code>color.ui</code> option is set and
+enabled. To enable git-sh's prompt colors explicitly, set the <code>color.sh</code> config
+value to <code>auto</code>:</p>
+
+<pre><code>$ git config --global color.sh auto
+</code></pre>
+
+<p>Customize prompt colors by setting the <code>color.sh.branch</code>, <code>color.sh.workdir</code>,
+and <code>color.sh.dirty</code> git config values:</p>
+
+<pre><code>$ git config --global color.sh.branch 'yellow reverse'
+$ git config --global color.sh.workdir 'blue bold'
+$ git config --global color.sh.dirty 'red'
+</code></pre>
+
+<p>See <a href="http://scie.nti.st/2007/5/2/colors-in-git">colors in git</a> for information.</p>
+
+<h2 id="COMPLETION">COMPLETION</h2>
+
+<p>Bash completion support is automatically enabled for all git built-in commands
+and also for aliases defined in the user <code>~/.gitconfig</code> file. The auto-completion
+logic is smart enough to know an alias <code>d</code> that expands to <code>git-diff</code> should use
+the same completion configuration as the <code>git-diff</code> command.</p>
+
+<p>The completion code is a slightly modified version of the git bash completion
+script shipped with the core git distribution. The script is built into the
+<code>git-sh</code> executable at compile time and need not be obtained or installed
+separately.</p>
+
+<h2 id="CUSTOMIZING">CUSTOMIZING</h2>
+
+<p>Most <code>git-sh</code> behavior can be configured by editing the user or system gitconfig
+files (<code>~/.gitconfig</code> and <code>/etc/gitconfig</code>) either by hand or using
+<code>git-config(1)</code>. The <code>[alias]</code> section is used to create basic command aliases.</p>
+
+<p>The <code>/etc/gitshrc</code> and <code>~/.gitshrc</code> files are sourced (in that order)
+immediately before the shell becomes interactive.</p>
+
+<p>The <code>~/.bashrc</code> file is sourced before either <code>/etc/gitshrc</code> or <code>~/.gitshrc</code>.
+Any bash customizations defined there and not explicitly overridden by <code>git-sh</code>
+are also available.</p>
+
+<h2 id="ENVIRONMENT">ENVIRONMENT</h2>
+
+<dl>
+<dt class="flush"><code>PS1</code></dt><dd><p>Set to the dynamic git-sh prompt. This can be customized in the <code>~/.gitshrc</code>
+or <code>/etc/gitshrc</code> files.</p></dd>
+<dt class="flush"><code>GIT_DIR</code></dt><dd><p>Explicitly set the path to the git repository instead of assuming the
+nearest <code>.git</code> path.</p></dd>
+<dt><code>GIT_WORK_TREE</code></dt><dd><p>Explicitly set the path to the root of the work tree instead of assuming
+the nearest parent directory with a <code>.git</code> repository.</p></dd>
+</dl>
+
+
+<h2 id="SEE-ALSO">SEE ALSO</h2>
+
+<p><span class="man-ref">bash<span class="s">(1)</span></span>, <span class="man-ref">git<span class="s">(1)</span></span>, <span class="man-ref">git-config<span class="s">(1)</span></span>,
+<a href="http://github.com/rtomayko/git-sh" data-bare-link="true">http://github.com/rtomayko/git-sh</a></p>
+
+
+  <ol class='man-decor man-foot man foot'>
+    <li class='tl'>Ryan Tomayko</li>
+    <li class='tc'>March 2010</li>
+    <li class='tr'>git-sh(1)</li>
+  </ol>
+
+  </div>
+</body>
+</html>

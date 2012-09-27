@@ -56,22 +56,28 @@ gitcomplete() {
 	complete -o default -o nospace -F _git_${command//-/_} $alias
 }
 
-# gitalias <alias>='<command> [<args>...]'
+# gitalias <alias>='<command> [<args>...]' [complete_prog]
 #
 # Define a new shell alias (as with the alias builtin) named <alias>
 # and enable command completion based on <command>. <command> must be
 # a standard non-abbreviated git command name that has completion support.
+# If <complete_prog> is specified, then _git_<complete_prog> function will be
+# used to do a completion.
 #
 # Examples:
 #   gitalias c=checkout
 #   gitalias ci='commit -v'
 #   gitalias r='rebase --interactive HEAD~10'
 gitalias() {
-	local alias="${1%%=*}" command="${1#*=}"
+	local alias="${1%%=*}" command="${1#*=}" complete_prog="$2"
 	local prog="${command##git }"
 	prog="${prog%% *}"
 	alias $alias="$command"
-	gitcomplete "$alias" "$prog"
+	if [ -z "$complete_prog" ]; then
+		gitcomplete "$alias" "$prog"
+	else
+		gitcomplete "$alias" "$complete_prog"
+	fi
 }
 
 # create aliases and configure bash completion for most porcelain commands

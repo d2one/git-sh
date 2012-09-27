@@ -1531,6 +1531,19 @@ _git_push ()
 	__git_complete_remote_or_refspec
 }
 
+_git_push_origin ()
+{
+	local prev_comp_cword=$COMP_CWORD
+	COMP_CWORD=${#COMP_WORDS[@]}
+	unset COMP_WORDS[0]
+	COMP_WORDS=(push origin ${COMP_WORDS[@]})
+
+	_git_push
+
+	COMP_WORDS=po
+	COMP_CWORD=$prev_comp_cword
+}
+
 _git_rebase ()
 {
 	local cur="${COMP_WORDS[COMP_CWORD]}" dir="$(__gitdir)"

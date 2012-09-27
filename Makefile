@@ -1,6 +1,7 @@
 SHELL    = /bin/sh
 DESTDIR  =
 PREFIX   = $(DESTDIR)/usr/local
+LIBDIR   = $(DESTDIR)/usr/lib/git-core/
 
 execdir  = $(PREFIX)/bin
 datadir  = $(PREFIX)/share
@@ -35,6 +36,10 @@ run: all
 install: $(PROGRAM)
 	install -d "$(execdir)"
 	install -m 0755 $(PROGRAM) "$(execdir)/$(PROGRAM)"
+	install -m 0755 git-edit.bash "$(LIBDIR)/git-edit"
+	git config --global alias.edit "!$(LIBDIR)/git-edit"
+	install -m 0755 git-forest.pl "$(LIBDIR)/git-forest"
+	git config --global alias.forest "!$(LIBDIR)/git-forest"
 	install -d "$(mandir)/man1"
 	install -m 0644 git-sh.1.roff "$(mandir)/man1/git-sh.1"
 

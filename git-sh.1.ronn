@@ -22,28 +22,14 @@ builtin aliases (see *BUILTIN ALIASES*), and git command aliases defined in
 The builtin aliases are overridden by aliases defined in the user or system
 gitconfig files.
 
-  * `a`:
-    git add
   * `b`:
     git branch
   * `c`:
     git checkout
-  * `d`:
-    git diff
-  * `f`:
-    git fetch --prune
-  * `k`:
-    git cherry-pick
   * `l`:
     git log --pretty=oneline --abbrev-commit
-  * `n`:
-    git commit --verbose --amend
-  * `r`:
-    git remote
-  * `s`:
-    git commit --dry-run --short
-  * `t`:
-    git diff --cached
+  * `po`:
+    git push origin
 
 ### The Staging Area
 
@@ -72,14 +58,26 @@ gitconfig files.
     git commit --verbose --amend
   * `n`:
     git commit --verbose --amend
+  * `s`:
+    git commit --dry-run --short
   * `k`:
     git cherry-pick
   * `re`:
     git rebase --interactive
+  * `rc`:
+    git rebase --continue
+  * `ra`:
+    git rebase --abort
+  * `rs`:
+    git rebase --skip
   * `pop`:
     git reset --soft HEAD^
   * `peek`:
     git log -p --max-count=1
+  * `e`:
+    git edit
+  * `fr`:
+    git forest --all --sha
 
 ### Fetching and Pulling
 
@@ -96,6 +94,8 @@ gitconfig files.
     git diff
   * `ds`:
     git diff --stat (mnemonic: "diff stat")
+  * `t`:
+    git diff --cached
   * `hard`:
     git reset --hard
   * `soft`:
