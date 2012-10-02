@@ -32,7 +32,7 @@ gitalias rs='git rebase --skip'
 gitalias pop='git reset --soft HEAD^'
 gitalias peek='git log -p --max-count=1'
 gitalias e='git edit'
-gitalias fr='git forest --all --sha'
+gitalias fr='git forest --all --sha | less -X'
 
 # git fetch
 gitalias f='git fetch --prune'
